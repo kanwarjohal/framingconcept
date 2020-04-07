@@ -17,6 +17,16 @@ else:
     DATABASE_URL = os.environ['DATABASE_URL']
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
+    from sqlalchemy.engine.url import make_url
+    url = make_url(os.environ.get('DATABASE_URL'))
+    env = f'''PG_USER={url.username}
+    PG_PASSWORD={url.password}
+    PG_HOST={url.host}
+    PG_PORT={url.port}
+    PG_DBNAME={url.database}'''
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = F'postgres://{url.username}:{url.password}@{url.host}:{url.port}/{url.database}'
+
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xxjlqkvagyjeiv:1f2ac8acf89f9fdad4c3fba88ff4dbb7c2730be534dc80bac14db6514984e525@ec2-54-159-112-44.compute-1.amazonaws.com:5432/db322304ucsitt'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
