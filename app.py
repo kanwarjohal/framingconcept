@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+import os
+import psycopg2
 
 app = Flask(__name__)
 CORS(app)
@@ -12,7 +14,10 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rawnak88@localhost/test'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xxjlqkvagyjeiv:1f2ac8acf89f9fdad4c3fba88ff4dbb7c2730be534dc80bac14db6514984e525@ec2-54-159-112-44.compute-1.amazonaws.com:5432/db322304ucsitt'
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xxjlqkvagyjeiv:1f2ac8acf89f9fdad4c3fba88ff4dbb7c2730be534dc80bac14db6514984e525@ec2-54-159-112-44.compute-1.amazonaws.com:5432/db322304ucsitt'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
