@@ -71,7 +71,7 @@ def handle_loading():
         results = [
             {
                 "occupancy": loading.occupancy,
-                "use": loading.loading,
+                "use": loading.use,
                 "uniformloadpsf": loading.uniformloadpsf
             } for loading in asceloading]
 
