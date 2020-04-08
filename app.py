@@ -20,7 +20,8 @@ else:
     from sqlalchemy.engine.url import make_url
     url = make_url(os.environ.get('DATABASE_URL'))
     env = f'''PG_USER={url.username}
-    PG_PASSWORD={url.password}    PG_HOST={url.host}
+    PG_PASSWORD={url.password}    
+    PG_HOST={url.host}
     PG_PORT={url.port}
     PG_DBNAME={url.database}'''
 
@@ -34,12 +35,12 @@ class Loading(db.Model):
     __tablename__ = 'asceloading'
 
     id = db.Column(db.Integer, primary_key=True)
-    occupency = db.Column(db.String(), unique=True)
+    occupancy = db.Column(db.String(), unique=True)
     use = db.Column(db.String(), unique=True)
     uniformloadpsf = db.Column(db.String)
 
-    def __init__(self, occupency, use, uniformloadpsf):
-        self.occupency = occupency
+    def __init__(self, occupancy, use, uniformloadpsf):
+        self.occupancy = occupancy
         self.use = use
         self.uniformloadpsf = uniformloadpsf
 
@@ -58,10 +59,10 @@ def handle_loading():
     if request.method == 'POST':
         if request.is_json:
             data = request.get_json()
-            new_loading = Loading(occupency=data['occupency'], use=data['use'], uniformloadpsf=data['uniformloadpsf'])
+            new_loading = Loading(occupancy=data['occupancy'], use=data['use'], uniformloadpsf=data['uniformloadpsf'])
             db.session.add(new_loading)
             db.session.commit()
-            return {"message": f"loading {new_loading.loading_type} has been created successfully."}
+            return {"message": f"loading {new_loading.occupancy} {new_loading.use} {new_loading.uniformloadpsf} has been created successfully."}
         else:
             return {"error": "The request payload is not in JSON format"}
 
@@ -69,7 +70,7 @@ def handle_loading():
         asceloading = Loading.query.all()
         results = [
             {
-                "occupency": loading.loading_type,
+                "occupancy": loading.occupancy,
                 "use": loading.loading,
                 "uniformloadpsf": loading.uniformloadpsf
             } for loading in asceloading]
