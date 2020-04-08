@@ -20,32 +20,32 @@ else:
     from sqlalchemy.engine.url import make_url
     url = make_url(os.environ.get('DATABASE_URL'))
     env = f'''PG_USER={url.username}
-    PG_PASSWORD={url.password}
-    PG_HOST={url.host}
+    PG_PASSWORD={url.password}    PG_HOST={url.host}
     PG_PORT={url.port}
     PG_DBNAME={url.database}'''
 
     app.config['SQLALCHEMY_DATABASE_URI'] = F'postgres://{url.username}:{url.password}@{url.host}:{url.port}/{url.database}'
-
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xxjlqkvagyjeiv:1f2ac8acf89f9fdad4c3fba88ff4dbb7c2730be534dc80bac14db6514984e525@ec2-54-159-112-44.compute-1.amazonaws.com:5432/db322304ucsitt'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 class Loading(db.Model):
-    __tablename__ = 'floor_loading'
+    __tablename__ = 'asceloading'
 
     id = db.Column(db.Integer, primary_key=True)
-    loading_type = db.Column(db.String(), unique=True)
-    loading = db.Column(db.String)
+    occupency = db.Column(db.String(), unique=True)
+    use = db.Column(db.String(), unique=True)
+    uniformloadpsf = db.Column(db.String)
 
-    def __init__(self, loading_type, loading):
-        self.loading_type = loading_type
-        self.loading = loading
+    def __init__(self, occupency, use, uniformloadpsf):
+        self.occupency = occupency
+        self.use = use
+        self.uniformloadpsf = uniformloadpsf
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
 
 
 @app.route('/')
@@ -53,12 +53,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/floor_loading', methods=['POST', 'GET'])
+@app.route('/asceloading', methods=['POST', 'GET'])
 def handle_loading():
     if request.method == 'POST':
         if request.is_json:
             data = request.get_json()
-            new_loading = Loading(loading_type=data['loading_type'], loading=data['loading'])
+            new_loading = Loading(occupency=data['occupency'], use=data['use'], uniformloadpsf=data['uniformloadpsf'])
             db.session.add(new_loading)
             db.session.commit()
             return {"message": f"loading {new_loading.loading_type} has been created successfully."}
@@ -66,12 +66,13 @@ def handle_loading():
             return {"error": "The request payload is not in JSON format"}
 
     elif request.method == 'GET':
-        floor_loading = Loading.query.all()
+        asceloading = Loading.query.all()
         results = [
             {
-                "loading_type": loading.loading_type,
-                "loading": loading.loading
-            } for loading in floor_loading]
+                "occupency": loading.loading_type,
+                "use": loading.loading,
+                "uniformloadpsf": loading.uniformloadpsf
+            } for loading in asceloading]
 
         return {"count": len(results), "loading": results}
 

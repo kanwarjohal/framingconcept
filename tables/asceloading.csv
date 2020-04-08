@@ -1,0 +1,56 @@
+﻿occupency,use,uniformloadpsf
+Access floor systems,Office,50
+Access floor systems,Computers,100
+Armories and drill rooms,,150
+Assembly areas,Fixed seats,60
+Assembly areas,Lobbies,100
+Assembly areas,Movable seats,100
+Assembly areas,Platforms,100
+Assembly areas,Stage floors,150
+Assembly areas,Bleachers,100
+Assembly areas,Stadiums with fixed seats,60
+Assembly areas,Other assembly,100
+Balconies and decks,,100
+Catwalks for maintenance access,,40
+Corridors,First floor,100
+Dining rooms and restaurants,,100
+Fire escapes,Multi family dwelling,100
+Fire escapes,Single family dwelling,40
+Garages,Passenger vehicles,40
+Helipads,3000 lb or less,40
+Helipads,3000 lb plus,60
+Hospitals,"Operating rooms, laboratories",60
+Hospitals,Patient rooms,40
+Hospitals,Corridors,80
+Libraries,Reading rooms,60
+Libraries,Stack rooms,150
+Libraries,Corridors above first floor,80
+Manufacturing,Light,125
+Manufacturing,Heavy,250
+Office buildings,Lobbies and first floor corridors,100
+Office buildings,Offices,50
+Office buildings,Corridors above first floor,80
+Penal institutions,Cell blocks,40
+Penal institutions,Corridors,100
+Recreational uses,"Bowling alleys, poolrooms",75
+Recreational uses,Dance halls and ballrooms,100
+Recreational uses,Gymnasiums,100
+Residential,One and two family dwellings,40
+Residential,Public rooms,100
+Residential,Corridors serving public rooms,100
+Roofs,"Ordinary flat, pitched and curved",20
+Roofs,Assembly,100
+Schools,Classrooms,40
+Schools,Corridors above first floor,80
+Schools,First floor corridors,100
+"Sidewalks, vehicular driveways",,250
+Stairs and exits,Public,100
+Stairs and exits,One and two family dwellings,40
+Storage areas above ceilings,,20
+Storage warehouses,Light,125
+Storage warehouses,Heavy,250
+Stores,First floor,100
+Stores,Upper floors,75
+Stores,"Whole sale, all floors",125
+Walkways and elevated platforms,Other than exit ways,60
+"Yards and terraces, pedestrain",,100
