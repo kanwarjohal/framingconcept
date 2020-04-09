@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
@@ -85,8 +85,11 @@ def handle_loading():
 @app.route('/framingrequest', methods=['POST'])
 def handle_framing_request():
     if request.method == 'POST':
-        req = request.get_json()
-        print('sent from client', req)
+        if request.is_json:
+            req = request.get_json()
+            print('sent from client', req)
+        else:
+            print('error not json')
     return 'hollowcore'
 
 
