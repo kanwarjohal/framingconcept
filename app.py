@@ -68,6 +68,11 @@ def handle_loading():
 
     elif request.method == 'GET':
         asceloading = Loading.query.all()
+
+        for loading in asceloading:
+            if loading.use == None:
+                loading.use = ""
+                
         results = [
             {
                 "occupancy": loading.occupancy,
