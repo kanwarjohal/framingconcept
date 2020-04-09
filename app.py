@@ -82,10 +82,11 @@ def handle_loading():
 
         return {"count": len(results), "loading": results}
 
-@app.route('/framingrequest')
+@app.route('/framingrequest', methods=['POST'])
 def handle_framing_request():
-    req = request.get_json()
-    print('sent from client', req)
+    if request.method == 'POST':
+        req = request.get_json()
+        print('sent from client', req)
     return 'hollowcore'
 
 
