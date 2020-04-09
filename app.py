@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
@@ -72,7 +72,7 @@ def handle_loading():
         for loading in asceloading:
             if loading.use == None:
                 loading.use = ""
-                
+
         results = [
             {
                 "occupancy": loading.occupancy,
@@ -81,6 +81,12 @@ def handle_loading():
             } for loading in asceloading]
 
         return {"count": len(results), "loading": results}
+
+@app.route('/framingrequest')
+def handle_framing_request():
+    req = request.get_json()
+    print('sent from client', req)
+    return 'hollowcore'
 
 
 if __name__ == '__main__':
