@@ -89,7 +89,7 @@ def handle_framing_request():
             req = request.get_json()
             print('sent from client', req)
         else:
-            print(request)
+            print('sent form client', request.args, request.values)
     return 'hollowcore'
 
 
