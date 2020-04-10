@@ -65,17 +65,17 @@ class StubbesHollowCore(db.Model):
     mrnmm = db.Column(db.Float())
 
     def __init__(self, depthmm, amm2, ixmm4, ybmm, bwmm, fpumpa, fcmpa, fcimpa, swkpa, strands13mm, mrnmm):
-        self.depth = depthmm
-        self.a = amm2
-        self.ix = ixmm4
-        self.yb = ybmm
-        self.bw = bwmm
-        self.fpu = fpumpa
-        self.fc = fcmpa
-        self.fci = fcimpa
-        self.sw = swkpa
+        self.depthmm = depthmm
+        self.amm2 = amm2
+        self.ixmm4 = ixmm4
+        self.ybmm = ybmm
+        self.bwmm = bwmm
+        self.fpumpa = fpumpa
+        self.fcmpa = fcmpa
+        self.fcimpa = fcimpa
+        self.swkpa = swkpa
         self.strands13mm = strands13mm
-        self.mr = mrnmm
+        self.mrnmm = mrnmm
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
