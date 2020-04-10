@@ -3,6 +3,7 @@ from staticsfunctions import *
 def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
 
     database_hc = db_hollowcore.query.all()
+    print('testdb', database_hc)
     design_dict = {}
 
     if str_units == 'imperial':
@@ -22,9 +23,10 @@ def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
 
             design_dict.update({"depth": hollow_core.depthmm,
                                 "strands13mm": hollow_core.strands13mm,
-                                "mr": hollow_core.mrnmm,
+                                "mr": fl_mr,
                                 "mu": fl_mu,
                                 "utilization": fl_utilization})
+
     else:
         pass
 
