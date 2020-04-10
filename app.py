@@ -52,30 +52,30 @@ class Loading(db.Model):
 class StubbesHollowCore(db.Model):
     __tablename__ = 'stubbeshollowcore'
     id = db.Column(db.Integer, primary_key=True)
-    depth = db.Column(db.Float())
-    a = db.Column(db.Float())
-    ix = db.Column(db.Float())
-    yb = db.Column(db.Float())
-    bw = db.Column(db.Float())
-    fpu = db.Column(db.Float())
-    fc = db.Column(db.Float())
-    fci = db.Column(db.Float())
-    sw = db.Column(db.Float())
+    depthmm = db.Column(db.Float())
+    amm2 = db.Column(db.Float())
+    ixmm4 = db.Column(db.Float())
+    ybmm = db.Column(db.Float())
+    bwmm = db.Column(db.Float())
+    fpumpa = db.Column(db.Float())
+    fcmpa = db.Column(db.Float())
+    fcimpa = db.Column(db.Float())
+    swkpa = db.Column(db.Float())
     strands13mm = db.Column(db.Float())
-    mr = db.Column(db.Float())
+    mrnmm = db.Column(db.Float())
 
-    def __init__(self, depth, a, ix, yb, bw, fpu, fc, fci, sw, strands13mm, mr):
-        self.depth = depth
-        self.a = a
-        self.ix = ix
-        self.yb = yb
-        self.bw = bw
-        self.fpu = fpu
-        self.fc = fc
-        self.fci = fci
-        self.sw = sw
+    def __init__(self, depthmm, amm2, ixmm4, ybmm, bwmm, fpumpa, fcmpa, fcimpa, swkpa, strands13mm, mrnmm):
+        self.depth = depthmm
+        self.a = amm2
+        self.ix = ixmm4
+        self.yb = ybmm
+        self.bw = bwmm
+        self.fpu = fpumpa
+        self.fc = fcmpa
+        self.fci = fcimpa
+        self.sw = swkpa
         self.strands13mm = strands13mm
-        self.mr = mr
+        self.mr = mrnmm
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
