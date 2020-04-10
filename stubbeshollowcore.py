@@ -3,7 +3,6 @@ from staticsfunctions import *
 def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
 
     database_hc = db_hollowcore.query.all()
-    print('testdb', database_hc)
     design_array = []
 
     if str_units == 'imperial':
@@ -16,9 +15,9 @@ def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
         fl_mf_live = moment_simple_beam(fl_span=fl_span, fl_width=1, fl_loading=fl_uniform_live_load)
 
         for hollow_core in database_hc:
-            fl_mf_dead = moment_simple_beam(fl_span=fl_span, fl_width=1, fl_loading=float(hollow_core.swkpa))
-            fl_mu = 1.25 * fl_mf_dead + 1.5 * fl_mf_live
-            fl_mr = float(hollow_core.mrnmm)/1000000
+            fl_mf_dead = round(moment_simple_beam(fl_span=fl_span, fl_width=1, fl_loading=float(hollow_core.swkpa)), 2)
+            fl_mu = round(1.25 * fl_mf_dead + 1.5 * fl_mf_live, 2)
+            fl_mr = round(float(hollow_core.mrnmm)/1000000, 2)
             fl_utilization = fl_mu/fl_mr
             design = {"depth": hollow_core.depthmm,
                       "strands13mm": hollow_core.strands13mm,

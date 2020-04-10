@@ -127,8 +127,6 @@ def handle_framing_request():
                                           str_units='imperial',
                                           db_hollowcore=StubbesHollowCore)
 
-            print('testjson', json.dumps(design_array))
-
             return json.dumps(design_array)
         else:
             return {"error": "The request payload is not in JSON format"}
