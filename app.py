@@ -4,6 +4,8 @@ from flask_cors import CORS
 import os
 import psycopg2
 
+from stubbeshollowcore import *
+
 app = Flask(__name__)
 CORS(app)
 
@@ -47,6 +49,36 @@ class Loading(db.Model):
     def __repr__(self):
         return '<id {}>'.format(self.id)
 
+class StubbesHollowCore(db.Model):
+    __tablename__ = 'stubbeshollowcore'
+    id = db.Column(db.Integer, primary_key=True)
+    depth = db.Column(db.Float())
+    a = db.Column(db.Float())
+    ix = db.Column(db.Float())
+    yb = db.Column(db.Float())
+    bw = db.Column(db.Float())
+    fpu = db.Column(db.Float())
+    fc = db.Column(db.Float())
+    fci = db.Column(db.Float())
+    sw = db.Column(db.Float())
+    strands13mm = db.Column(db.Float())
+    mr = db.Column(db.Float())
+
+    def __init__(self, depth, a, ix, yb, bw, fpu, fc, fci, sw, strands13mm, mr):
+        self.depth = depth
+        self.a = a
+        self.ix = ix
+        self.yb = yb
+        self.bw = bw
+        self.fpu = fpu
+        self.fc = fc
+        self.fci = fci
+        self.sw = sw
+        self.strands13mm = strands13mm
+        self.mr = mr
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
 
 
 @app.route('/')
@@ -87,10 +119,10 @@ def handle_framing_request():
     if request.method == 'POST':
         if request.is_json:
             req = request.get_json()
-            print('sent from client', req)
+            # req = {'userinput': ['Assembly areas', 'Platforms', 100], 'span': '61'}
+            designstubbeshc(fl_uniform_live_load=req.get('userinput')[2], fl_span=req.get('span'), str_units='imperial')
         else:
-            print('sent form client', request.view_args)
-    return 'hollowcore'
+            return {"error": "The request payload is not in JSON format"}
 
 
 if __name__ == '__main__':
