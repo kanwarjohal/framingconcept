@@ -4,7 +4,7 @@ def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
 
     database_hc = db_hollowcore.query.all()
     print('testdb', database_hc)
-    design_dict = {}
+    design_array = []
 
     if str_units == 'imperial':
         """
@@ -20,14 +20,15 @@ def designstubbeshc(fl_uniform_live_load, fl_span, str_units, db_hollowcore):
             fl_mu = 1.25 * fl_mf_dead + 1.5 * fl_mf_live
             fl_mr = float(hollow_core.mrnmm)/1000000
             fl_utilization = fl_mu/fl_mr
+            design = {"depth": hollow_core.depthmm,
+                      "strands13mm": hollow_core.strands13mm,
+                      "mr": fl_mr,
+                      "mu": fl_mu,
+                      "utilization": fl_utilization}
 
-            design_dict.update({"depth": hollow_core.depthmm,
-                                "strands13mm": hollow_core.strands13mm,
-                                "mr": fl_mr,
-                                "mu": fl_mu,
-                                "utilization": fl_utilization})
+            design_array.append(design)
 
     else:
         pass
 
-    return design_dict
+    return design_array

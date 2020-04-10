@@ -121,12 +121,14 @@ def handle_framing_request():
         if request.is_json:
             req = request.get_json()
             # req = {'userinput': ['Assembly areas', 'Platforms', 100], 'span': '61'}
-            design_dict = designstubbeshc(fl_uniform_live_load=float(req.get('userinput')[2]),
+            design_array = designstubbeshc(fl_uniform_live_load=float(req.get('userinput')[2]),
                                           fl_span=float(req.get('span')),
                                           str_units='imperial',
                                           db_hollowcore=StubbesHollowCore)
-            print('test', design_dict)
-            return jsonify(design_dict)
+            print('test', design_array)
+            print('testjson', jsonify(design_array))
+
+            return jsonify(design_array)
         else:
             return {"error": "The request payload is not in JSON format"}
 
