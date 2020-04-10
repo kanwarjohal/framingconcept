@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
 import psycopg2
+from flask import jsonify
 
 from stubbeshollowcore import *
 
@@ -120,10 +121,11 @@ def handle_framing_request():
         if request.is_json:
             req = request.get_json()
             # req = {'userinput': ['Assembly areas', 'Platforms', 100], 'span': '61'}
-            design_dict = designstubbeshc(fl_uniform_live_load=req.get('userinput')[2], fl_span=req.get('span'),
-                            str_units='imperial',
-                            db_hollowcore=StubbesHollowCore)
-            return design_dict
+            design_dict = designstubbeshc(fl_uniform_live_load=float(req.get('userinput')[2]),
+                                          fl_span=float(req.get('span')),
+                                          str_units='imperial',
+                                          db_hollowcore=StubbesHollowCore)
+            return jsonify(design_dict)
         else:
             return {"error": "The request payload is not in JSON format"}
 
