@@ -4,6 +4,7 @@ from flask_cors import CORS
 import os
 import psycopg2
 from flask import jsonify
+import json
 
 from stubbeshollowcore import *
 
@@ -125,10 +126,10 @@ def handle_framing_request():
                                           fl_span=float(req.get('span')),
                                           str_units='imperial',
                                           db_hollowcore=StubbesHollowCore)
-            print('test', design_array)
-            print('testjson', jsonify(design_array))
 
-            return jsonify(design_array)
+            print('testjson', json.dumps(design_array))
+
+            return json.dumps(design_array)
         else:
             return {"error": "The request payload is not in JSON format"}
 
